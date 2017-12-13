@@ -18,6 +18,10 @@ var diff = 100;
 //counts the number of failures the user has encountered
 var failedClicks = 0;
 
+//h and s aspects of the hsl background-color
+var hue = 0;
+var sat = 50;
+
 //hardcode target as center
 //randomize later
 var targetX = boxWidth / 2;
@@ -63,7 +67,7 @@ var changeColor = function(e){
     var distMax = maxDist();
     var distMouse = distance(e.x,e.y,targetX,targetY);
     var color = 100 - Math.floor(diff * (distMouse / distMax));
-    var colorIn = 'background-color:hsl(' + '0' + ',' + '0' + '%,' + color + '%'+ ');';
+    var colorIn = 'background-color:hsl(' + hue + ', ' + sat + '%,' + color + '%'+ ');';
     box.setAttribute('style',colorIn);
 }
 
@@ -76,7 +80,7 @@ console.log("maxDist: " + maxDist());
 
 
 var header = document.createElement('h1');
-header.setAttribute('style','text-align:right');
+header.setAttribute('style','text-align:right; padding-right: 10px;');
 header.setAttribute('id','counter');
 header.innerHTML = 'Failures: ' + failedClicks;
 document.getElementById('box').appendChild(header);
