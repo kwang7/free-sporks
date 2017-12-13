@@ -35,6 +35,7 @@ var distance = function (x0, y0, x1, y1) {
 var findIt = function(e) {
     if (distance(e.x,e.y,targetX,targetY) < winDist){
         console.log('YOU WIN!!!! :D');
+        randomizeTarget();
     }
     else{
         console.log('Try again :c');
@@ -56,6 +57,11 @@ var changeColor = function(e){
     var color = 255 - Math.floor(diff * (distMouse / distMax));
     var colorIn = 'background-color:rgb(' + color + ',' + color + ',' + color + ');';
     box.setAttribute('style',colorIn);
+}
+
+var randomizeTarget = function(){
+    targetX = Math.floor(Math.random() * boxWidth);
+    targetY = Math.floor(Math.random() * boxHeight);
 }
 
 console.log("maxDist: " + maxDist());
