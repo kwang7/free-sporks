@@ -15,6 +15,9 @@ var winDist = 100;
 //maximum change in rgb, make smaller to increase difficulty
 var diff = 255;
 
+//counts the number of failures the user has encountered
+var failedClicks = 0;
+
 //hardcode target as center
 //randomize later
 var targetX = boxWidth / 2;
@@ -34,11 +37,15 @@ var distance = function (x0, y0, x1, y1) {
 
 var findIt = function(e) {
     if (distance(e.x,e.y,targetX,targetY) < winDist){
+	failedClicks = 0;
+	document.getElementById('counter').innerHTML = "Failures: 0";
         console.log('YOU WIN!!!! :D');
 	alert("YOU WIN!!!! :D");
         randomizeTarget();
     }
     else{
+	failedClicks += 1;
+	document.getElementById('counter').innerHTML = "Failures: " + failedClicks;
 	alert("yo! theres nothing here");
         console.log('Try again :c');
     }
@@ -67,6 +74,14 @@ var randomizeTarget = function(){
 }
 
 console.log("maxDist: " + maxDist());
+
+
+var header = document.createElement('h1');
+header.setAttribute('style','text-align:right');
+header.setAttribute('id','counter');
+header.innerHTML = 'Failures: ' + failedClicks;
+document.getElementById('box').appendChild(header);
+
 
 box.addEventListener("click", findIt);
 box.addEventListener("mousemove",changeColor);
