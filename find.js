@@ -35,9 +35,11 @@ var distance = function (x0, y0, x1, y1) {
 var findIt = function(e) {
     if (distance(e.x,e.y,targetX,targetY) < winDist){
         console.log('YOU WIN!!!! :D');
+	alert("YOU WIN!!!! :D");
         randomizeTarget();
     }
     else{
+	alert("yo! theres nothing here");
         console.log('Try again :c');
     }
 };
