@@ -13,7 +13,7 @@ var boxWidth = box.offsetWidth;
 var winDist = 100;
 
 //maximum change in rgb, make smaller to increase difficulty
-var diff = 255;
+var diff = 100;
 
 //hardcode target as center
 //randomize later
@@ -43,7 +43,6 @@ var findIt = function(e) {
         console.log('Try again :c');
     }
 };
-
 //returns the maximum distance from a point that can be achieved in the box
 var maxDist = function(){
     var d1 = distance(targetX,targetY,0,0);
@@ -56,8 +55,8 @@ var maxDist = function(){
 var changeColor = function(e){
     var distMax = maxDist();
     var distMouse = distance(e.x,e.y,targetX,targetY);
-    var color = 255 - Math.floor(diff * (distMouse / distMax));
-    var colorIn = 'background-color:rgb(' + color + ',' + color + ',' + color + ');';
+    var color = 100 - Math.floor(diff * (distMouse / distMax));
+    var colorIn = 'background-color:hsl(' + '0' + ',' + '0' + '%,' + color + '%'+ ');';
     box.setAttribute('style',colorIn);
 }
 
