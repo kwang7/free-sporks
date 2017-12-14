@@ -11,9 +11,9 @@ var boxWidth = box.offsetWidth;
 
 //hardcore modes -- booleans that activate or deactivate the decreasing of each variable to make the game harder
 //the numbers represent the factor by which each variable is divided after each round
-var decDist = false;
+var decDist = true;
 var distFact = 2;
-var decDiff = false;
+var decDiff = true;
 var diffFact = 2;
 
 //maximum distance from target to win, make smaller to increase difficulty
@@ -78,6 +78,8 @@ var findIt = function(e) {
 	    diff /= diffFact;
 	    console.log('new color gradient difference: ' + diff);
 	}
+	document.getElementById('difficulties').innerHTML = 'Win distance: ' + winDist + ', Hard distance-mode: ' + distDiff +
+	    '<br>Color difference: ' + diff + ', Hard color-mode: ' + diffDiff;
 	alert("YOU ACTUALLY FOUND IT!!! :D");
         randomizeTarget();
     }
@@ -151,7 +153,8 @@ var diffDiff = 'off';
 if (decDiff){
     diffDiff = 'on';
 }
-difficulty.innerHTML = 'Hard distance-mode: ' + distDiff + '<br>Hard color-mode: ' + diffDiff;
+difficulty.innerHTML = 'Win distance: ' + winDist + ', Hard distance-mode: ' + distDiff +
+    '<br>Color difference: ' + diff + ', Hard color-mode: ' + diffDiff;
 document.getElementById('box').appendChild(difficulty);
 
 alert("Find the target on this page. The lighter the background, the closer you are to it. Click when you think you've found it.");
