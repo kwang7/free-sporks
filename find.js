@@ -125,6 +125,7 @@ currFail.setAttribute('id','currFailCounter');
 currFail.innerHTML = 'Failures this round: ' + currFailures;
 document.getElementById('box').appendChild(currFail);
 
+alert("Find the target on this page. The lighter the background, the closer you are to it. Click when you think you've found it.");
 randomizeTarget();
 box.addEventListener("click", findIt);
 box.addEventListener("mousemove",changeColor);
