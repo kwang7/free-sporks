@@ -9,6 +9,13 @@ var box = document.getElementById("box");
 var boxHeight = box.offsetHeight;
 var boxWidth = box.offsetWidth;
 
+//hardcore modes -- booleans that activate or deactivate the decreasing of each variable to make the game harder
+//the numbers represent the factor by which each variable is divided after each round
+var decDist = false;
+var distFact = 2;
+var decDiff = false;
+var diffFact = 2;
+
 //maximum distance from target to win, make smaller to increase difficulty
 var winDist = 100;
 
@@ -63,6 +70,14 @@ var findIt = function(e) {
 	document.getElementById('successCounter').innerHTML = "Non-Failures: " + successes;
 	document.getElementById('currFailCounter').innerHTML = "Failures this round: 0";
         console.log('YOU GOT IT!');
+	if (decDist){
+	    winDist /= distFact;
+	    console.log('new distance threshold: ' + winDist);
+	}
+	if (decDiff){
+	    diff /= diffFact;
+	    console.log('new color gradient difference: ' + diff);
+	}
 	alert("YOU ACTUALLY FOUND IT!!! :D");
         randomizeTarget();
     }
@@ -124,6 +139,20 @@ currFail.setAttribute('style','text-align: right; padding-right: 10px;');
 currFail.setAttribute('id','currFailCounter');
 currFail.innerHTML = 'Failures this round: ' + currFailures;
 document.getElementById('box').appendChild(currFail);
+
+var difficulty = document.createElement('footer');
+difficulty.setAttribute('style','position:fixed;bottom:0px;');
+difficulty.setAttribute('id','difficulties');
+var distDiff = 'off';
+if (decDist){
+    distDiff = 'on';
+}
+var diffDiff = 'off';
+if (decDiff){
+    diffDiff = 'on';
+}
+difficulty.innerHTML = 'Hard distance-mode: ' + distDiff + '<br>Hard color-mode: ' + diffDiff;
+document.getElementById('box').appendChild(difficulty);
 
 alert("Find the target on this page. The lighter the background, the closer you are to it. Click when you think you've found it.");
 randomizeTarget();
